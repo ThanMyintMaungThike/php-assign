@@ -29,7 +29,7 @@
 // }
 
 $d = date("D");
-
+echo $d . "<br/>";
 if($d == "Fri")
  echo "Have a nice weekend!";
 elseif ($d == "Tue")
@@ -66,7 +66,7 @@ else
 
 $cars = ["Honda", "Toyata", "BMW", "Lexus"];
 // echo "<br/>"   .$cars[0].", " .$cars[1]. " and " .$cars[3]. " are Japanese cars.";
-foreach ($cars as $car) {
+foreach ($cars as $key=>$car) {
     echo $car;
     echo "<br/>";
 }
@@ -75,11 +75,40 @@ $ages = [
     "KoPhyo"=>32,
     "KoNg"=>34,
     "KoMyo"=>30,
+    "SuSu"=>null,
 ];
 foreach($ages as $key => $age) {
     echo $key .": " . $age . "<br/>";
 }
 // echo "<br/> Ko Myo is ".$ages['KoMyo']. " years old.";
+// Key only search for 1 dimentional arry, multidimentional array is not supported.
+// To check whether a property exists in an object, property_exists() should be used.
+var_dump(array_key_exists("SuSu", $ages));
+echo "<br/>";
+
+isset($ages['KoMyo']) ? print_r(true) : print_r(false);
+echo "<br/>";
+
+var_dump(isset($ages['SuSu']));
+echo "<br/>";
+
+$fruit = array_search('Banana', $fruits); // $key = 2;
+print_r($fruit); 
+echo $fruit;
+echo"<br/>";
+
+$people = [
+    2 => [
+      'name' => 'John',
+      'fav_color' => 'green'
+    ],
+    5=> [
+      'name' => 'Samuel',
+      'fav_color' => 'blue'
+    ],
+  ];
+  
+  $key = array_search('blue', array_column($people, 'fav_color'));
 
 $marks = [
     "John" => [
@@ -93,12 +122,20 @@ $marks = [
         "English" => 78,
     ],
 ];
-foreach ($marks as $name => $student ) {
-    echo $name ;
+foreach ($marks as $key => $student ) {
+
     foreach ($student as $subject => $score) {
-        echo " Marks for ". $subject . "is " . $score . "<br/>";
+        echo "Student ". $key." mark for ". $subject . "is " . $score . "<br/>";
         // echo $marks["John"]["Science"]. "<br/>";
     }   
 }
 // echo "Marks for John in Physics: ";
 // echo $marks["John"]["Science"]. "<br/>";
+
+$fruits = [
+    0 => "Apple",
+    2 => "Mango",
+    4 => "Banana",
+    5 => "Pineapple",
+];
+
