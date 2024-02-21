@@ -6,11 +6,12 @@ function testInput($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-$nameErr = $emailErr = $genderErr = $websiteErr = $passwordErr = $confirmPasswordErr = "";
-$name = $email = $gender = $website = $comment = $success = "";
+$nameErr = $emailErr = $show = $genderErr = $websiteErr = $passwordErr = $confirmPasswordErr = "";
+$name = $email = $gender = $website = $comment = "";
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 
     if(empty($_POST['name'])) {
         $nameErr = "* Name is required";
@@ -74,10 +75,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(empty($_POST["confirm-password"]) ||
     ( $_POST["confirm-password"] !== $_POST["password"])) {
         $confirmPasswordErr = "* Password does not match";
-    } else {
-        $success = "You are logged in successfully.";
-        // header("location: day3_Form.php". "/success"); 
+    }  
+
+    if($nameErr || $emailErr || $websiteErr || $genderErr || $passwordErr ||$confirmPasswordErr) {
+        $show = "Try again!";
+    }else {
+        $show = "You are logged in successfully.";
     }
+
 } 
 ?>
 
@@ -101,13 +106,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="mt-5">
     <div class="form">
         <h1 class="mb-3 text-primary">PHP Form Validation Example</h1>
-        <div class="alert alert-info"><?= $success; ?></div>
-<!-- 
-        <php if (isset($_GET['success'])) : ?>
-            <div class="alert alert-info"> 
-                Register successful. Please login.
-            </div>
-        <php endif ?> -->
+    
+
+        <div class="alert alert-info"><?= $show; ?></div>
 
         <form class="m-auto" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             Name: <input class="form-control" type="text" name="name" value="<?php echo $name; ?>">
