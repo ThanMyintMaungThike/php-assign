@@ -170,7 +170,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </thead>
         <tbody>
             <tr>
-
                 <td>
                 <?php
                     $myfile = fopen("loginRecord.txt", "r") or die ("Unable to open file!");
@@ -184,6 +183,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             </tr>
         </tbody>
     </div>
-    <!-- <php include 'formRecord.txt'; ?> -->
 </body>
 </html>
