@@ -5,7 +5,11 @@ if (isset($_POST["submit"])) {
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+    echo $target_file . '<br /><br />';
+    echo $imageFileType . '<br /><br />';
+
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    // print_r($check);echo"hello world!";
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
@@ -46,6 +50,7 @@ if (isset($_POST["submit"])) {
         }
     }
 }
+// var_dump($_FILES);
 ?>
 <!DOCTYPE html>
 <html lang="en">
